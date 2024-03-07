@@ -25,7 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 //    		JOIN oi.order o 
 //    		JOIN o.user u 
 //    		WHERE u.id = :userId""")
-    //List<Product> findProductsOrderedByUserId(@Param("userId") Long userId);
+//    List<Product> findProductsOrderedByUserId(@Param("userId") Long userId);
     
     List<Product> findByNameContaining(String keyword);
     

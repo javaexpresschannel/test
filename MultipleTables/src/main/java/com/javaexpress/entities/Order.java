@@ -32,7 +32,7 @@ public class Order {
     private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    @JsonIgnore
+    //@JsonIgnore
     private List<OrderItem> orderItems;
 
     private double totalAmount;

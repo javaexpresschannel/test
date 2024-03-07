@@ -18,11 +18,17 @@ import com.javaexpress.entities.Category;
 import com.javaexpress.services.CategoryService;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("categories")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    @PostMapping
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+        Category createdCategory = categoryService.createCategory(category);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
+    }
+    
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> categories = categoryService.getAllCategories();
@@ -35,11 +41,7 @@ public class CategoryController {
         return ResponseEntity.ok(category);
     }
 
-    @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        Category createdCategory = categoryService.createCategory(category);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
-    }
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateCategory(@PathVariable Long id, @RequestBody Category updatedCategory) {

@@ -2,6 +2,8 @@ package com.javaexpress.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +14,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Product {
 
 	@Id
@@ -23,6 +26,8 @@ public class Product {
 
     @DecimalMin(value = "0.01", message = "Price must be greater than 0")
     private double price;
+    
+    private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -31,6 +36,17 @@ public class Product {
     public Product() {
 		// TODO Auto-generated constructor stub
 	}
+
+    
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
 
 	public Long getId() {
 		return id;

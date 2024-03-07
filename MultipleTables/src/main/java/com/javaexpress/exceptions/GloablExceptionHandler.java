@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import jakarta.persistence.EntityNotFoundException;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class GloablExceptionHandler {
 
 	// 400

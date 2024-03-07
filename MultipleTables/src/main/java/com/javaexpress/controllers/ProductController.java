@@ -32,6 +32,12 @@ public class ProductController {
 		Product createdProduct = productService.createProduct(product);
 		return ResponseEntity.ok(createdProduct);
 	}
+	
+	@GetMapping("/category/{categoryName}")
+	public ResponseEntity<List<Product>> findProductsByCategoryName(@PathVariable String categoryName) {
+		List<Product> products = productService.findProductsByCategoryName(categoryName);
+		return ResponseEntity.ok(products);
+	}
 
 	@GetMapping
 	public ResponseEntity<List<Product>> getAllProducts() {
@@ -63,11 +69,7 @@ public class ProductController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@GetMapping("/category/{categoryName}")
-	public ResponseEntity<List<Product>> findProductsByCategoryName(@PathVariable String categoryName) {
-		List<Product> products = productService.findProductsByCategoryName(categoryName);
-		return ResponseEntity.ok(products);
-	}
+	
 
 	@GetMapping("/search")
 	public ResponseEntity<List<Product>> searchProductsByName(@RequestParam String keyword) {
@@ -75,11 +77,17 @@ public class ProductController {
 		return ResponseEntity.ok(products);
 	}
 	
-	@GetMapping("/category/{categoryId}")
+	@GetMapping("/category/id/{categoryId}")
     public List<Product> getProductsByCategory(@PathVariable Long categoryId) {
         Category category = new Category();
         category.setId(categoryId);
         return productService.findByCategory(category);
+    }
+	
+	
+	@GetMapping("/category/new/{categoryId}")
+    public List<Product> getProductsByCategory1(@PathVariable Long categoryId) {
+        return productService.getProductsByCategory(categoryId);
     }
 
 }
